@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const path = require("path");
+const Dotenv = require("dotenv-webpack");
 
 const isProduction = String(process.env.NODE_ENV).includes("production");
 
@@ -54,6 +55,7 @@ module.exports = {
     contentBase: "./"
   },
   plugins: [
+    new Dotenv(),
     new HtmlWebpackPlugin({
       template: "./src/index.html",
       filename: "./index.html"

@@ -1,5 +1,7 @@
 import React from "react";
 
-const App = props => <div>React Template</div>;
+const App = props => {
+  return <div>{process.env.APP_NAME}</div>;
+};
 
 export default App;
