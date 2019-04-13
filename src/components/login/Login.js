@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
-import { Input, Button, Segment, Form, Header } from "semantic-ui-react";
+import { Button, Segment, Form, Header } from "semantic-ui-react";
 import "./login.less";
 import LabelledInput from "../forms/LabelledInput";
 
@@ -21,7 +21,6 @@ const Login = props => {
         url,
         { email, password },
         {
-          method: "POST",
           headers: {
             "Content-Type": "application/json",
             Accept: "application/json"
@@ -44,7 +43,7 @@ const Login = props => {
     <div className="login">
       <Segment color="blue">
         <Header>{process.env.APP_NAME}</Header>
-        <Form>
+        <Form onSubmit={login}>
           <LabelledInput
             label="Email"
             id="email"
@@ -58,7 +57,7 @@ const Login = props => {
             value={password}
             onChange={e => setPassword(e.target.value)}
           />
-          <Button type="submit" primary onClick={login} loading={isLoading}>
+          <Button type="submit" primary loading={isLoading}>
             Sign In
           </Button>
         </Form>
