@@ -33,7 +33,6 @@ const Login = props => {
 
       setTimeout(() => props.history.push("/"));
     } catch (e) {
-      console.log("Error", e);
       setMessage(e.message);
     }
 
