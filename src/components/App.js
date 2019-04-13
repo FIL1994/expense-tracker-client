@@ -1,12 +1,12 @@
 import React from "react";
-import Login from "./login/Login";
+import Routes from "./Routes";
 
-const App = props => {
+const App = () => {
   return (
-    <div>
+    <>
       {process.env.APP_NAME}
-      <Login />
-    </div>
+      <Routes />
+    </>
   );
 };
 
