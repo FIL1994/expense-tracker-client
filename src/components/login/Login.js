@@ -1,47 +1,68 @@
 import React, { useState } from "react";
-import { Input, Button } from "semantic-ui-react";
 import axios from "axios";
+import { Input, Button, Segment, Form } from "semantic-ui-react";
+import "./login.less";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   async function login() {
-    const url = `http://localhost:4000/api/users/signin`;
+    setIsLoading(true);
 
     try {
-      const res = await fetch(url, {
-        method: "POST",
-        body: JSON.stringify({
-          email,
-          password
-        }),
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json"
-        }
-      });
+      const url = `http://localhost:4000/api/users/signin`;
 
-      console.log("res", res);
+      const res = await axios.post(
+        url,
+        { email, password },
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json"
+          }
+        }
+      );
+
+      const { token } = res.data;
+      localStorage.setItem("token", token);
     } catch (e) {
       console.log("Error", e);
     }
+
+    setIsLoading(false);
   }
 
   return (
-    <div>
-      <Input
-        label="Email"
-        value={email}
-        onChange={e => setEmail(e.target.value)}
-      />
-      <Input
-        label="password"
-        type="password"
-        value={password}
-        onChange={e => setPassword(e.target.value)}
-      />
-      <Button onClick={login}>Sign In</Button>
+    <div className="login">
+      <Segment color="blue">
+        <Form>
+          <div className="input-wrapper">
+            <label htmlFor="email">Email</label>
+            <Input
+              id="email"
+              fluid
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="input-wrapper">
+            <label htmlFor="password">Password</label>
+            <Input
+              id="password"
+              fluid
+              type="password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+            />
+          </div>
+          <Button type="submit" primary onClick={login} loading={isLoading}>
+            Sign In
+          </Button>
+        </Form>
+      </Segment>
     </div>
   );
 };
