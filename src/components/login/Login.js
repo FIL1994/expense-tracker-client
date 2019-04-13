@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { Input, Button, Segment, Form } from "semantic-ui-react";
+import { Input, Button, Segment, Form, Header } from "semantic-ui-react";
 import "./login.less";
 
 const Login = () => {
@@ -41,6 +41,7 @@ const Login = () => {
   return (
     <div className="login">
       <Segment color="blue">
+        <Header>{process.env.APP_NAME}</Header>
         <Form>
           <div className="input-wrapper">
             <label htmlFor="email">Email</label>
