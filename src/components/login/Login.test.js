@@ -30,7 +30,7 @@ describe("Login", () => {
 
     axiosMock
       .onPost(/signin/)
-      .replyOnce(401, { errors: { detail: "Unauthorized" } });
+      .reply(401, { errors: { detail: "Unauthorized" } });
 
     const { getByText, getByLabelText } = render(<Login />);
 
