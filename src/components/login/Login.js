@@ -14,7 +14,7 @@ const Login = props => {
     setIsLoading(true);
 
     try {
-      const url = `http://localhost:4000/api/users/signin`;
+      const url = `${process.env.ROOT_URL}/api/users/signin`;
 
       const res = await axios.post(
         url,
