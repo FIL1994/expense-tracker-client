@@ -1,6 +1,7 @@
 import React from "react";
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Login from "./login/Login";
+import Dashboard from "./dashboard/Dashboard";
 
 const Routes = () => {
   const isLoggedIn = localStorage.token !== undefined;
@@ -11,7 +12,10 @@ const Routes = () => {
 
   return (
     <BrowserRouter>
-      <Route path="/login" component={Login} />
+      <Switch>
+        <Route path="/login" component={Login} />
+        <Route path="/" component={Dashboard} />
+      </Switch>
     </BrowserRouter>
   );
 };

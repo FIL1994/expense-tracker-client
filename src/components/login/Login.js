@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import { withRouter } from "react-router-dom";
 import axios from "axios";
 import { Input, Button, Segment, Form, Header } from "semantic-ui-react";
 import "./login.less";
 
-const Login = () => {
+const Login = props => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -29,9 +30,9 @@ const Login = () => {
 
       const { token } = res.data;
       localStorage.setItem("token", token);
-      setMessage("Success!");
+
+      setTimeout(() => props.history.push("/"));
     } catch (e) {
-      console.log("Error", e);
       setMessage(e.message);
     }
 
@@ -72,4 +73,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default withRouter(Login);
