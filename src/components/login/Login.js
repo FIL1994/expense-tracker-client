@@ -7,6 +7,7 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [message, setMessage] = useState("");
 
   async function login() {
     setIsLoading(true);
@@ -28,8 +29,10 @@ const Login = () => {
 
       const { token } = res.data;
       localStorage.setItem("token", token);
+      setMessage("Success!");
     } catch (e) {
       console.log("Error", e);
+      setMessage(e.message);
     }
 
     setIsLoading(false);
@@ -62,6 +65,7 @@ const Login = () => {
             Sign In
           </Button>
         </Form>
+        <div className="message">{message}</div>
       </Segment>
     </div>
   );
