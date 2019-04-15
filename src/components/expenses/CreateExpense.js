@@ -30,8 +30,6 @@ const CreateExpense = props => {
           }
         }
       );
-
-      console.log(res);
     } catch (e) {}
 
     setIsLoading(false);
@@ -53,6 +51,7 @@ const CreateExpense = props => {
           value={amount}
           onChange={e => setAmount(e.target.value)}
         />
+        <br />
         <Button primary type="submit" loading={isLoading}>
           Add Expense
         </Button>

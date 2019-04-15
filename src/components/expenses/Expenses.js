@@ -1,20 +1,30 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from "react";
+import { useExpenses } from "../../hooks/data";
+import { Segment, Header, Card } from "semantic-ui-react";
 
-const Expenses = props => {
-  useEffect(() => {
-    const url = `${process.env.ROOT_URL}/api/expenses`;
+const Expenses = () => {
+  const expenses = useExpenses();
 
-    axios.get(url, {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: `Bearer ${localStorage.token}`
-      }
-    });
-  }, []);
-
-  return <div>Expenses</div>;
+  return (
+    <Segment>
+      <Header>Expenses</Header>
+      <Card.Group>
+        {expenses.map(expense => (
+          <Card key={expense.id}>
+            <Card.Content>
+              <Card.Header>{expense.description}</Card.Header>
+              <Card.Description>
+                {Intl.NumberFormat("en-CA", {
+                  style: "currency",
+                  currency: "CAD"
+                }).format(expense.amount)}
+              </Card.Description>
+            </Card.Content>
+          </Card>
+        ))}
+      </Card.Group>
+    </Segment>
+  );
 };
 
 export default Expenses;

@@ -52,5 +52,5 @@
     "semantic-ui-react": "^0.86.0"
   },
   "author": "Philip Van Raalte",
-  "description": ""
+  "description": "Client for an API written in Elixir with Phoenix"
 }
