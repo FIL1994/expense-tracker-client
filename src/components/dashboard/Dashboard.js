@@ -1,7 +1,14 @@
 import React from "react";
+import Expenses from "../expenses/Expenses";
+import CreateExpense from "../expenses/CreateExpense";
 
 const Dashboard = () => {
-  return <div>Dashboard</div>;
+  return (
+    <>
+      <CreateExpense />
+      <Expenses />
+    </>
+  );
 };
 
 export default Dashboard;

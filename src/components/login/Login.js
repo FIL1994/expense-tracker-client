@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { withRouter } from "react-router-dom";
 import axios from "axios";
-import { Input, Button, Segment, Form, Header } from "semantic-ui-react";
+import { Button, Segment, Form, Header } from "semantic-ui-react";
 import "./login.less";
+import LabelledInput from "../forms/LabelledInput";
 
 const Login = props => {
   const [email, setEmail] = useState("");
@@ -14,13 +15,12 @@ const Login = props => {
     setIsLoading(true);
 
     try {
-      const url = `http://localhost:4000/api/users/signin`;
+      const url = `${process.env.ROOT_URL}/api/users/signin`;
 
       const res = await axios.post(
         url,
         { email, password },
         {
-          method: "POST",
           headers: {
             "Content-Type": "application/json",
             Accept: "application/json"
@@ -43,27 +43,21 @@ const Login = props => {
     <div className="login">
       <Segment color="blue">
         <Header>{process.env.APP_NAME}</Header>
-        <Form>
-          <div className="input-wrapper">
-            <label htmlFor="email">Email</label>
-            <Input
-              id="email"
-              fluid
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-            />
-          </div>
-          <div className="input-wrapper">
-            <label htmlFor="password">Password</label>
-            <Input
-              id="password"
-              fluid
-              type="password"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-            />
-          </div>
-          <Button type="submit" primary onClick={login} loading={isLoading}>
+        <Form onSubmit={login}>
+          <LabelledInput
+            label="Email"
+            id="email"
+            value={email}
+            onChange={e => setEmail(e.target.value)}
+          />
+          <LabelledInput
+            label="Password"
+            id="password"
+            type="password"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+          />
+          <Button type="submit" primary loading={isLoading}>
             Sign In
           </Button>
         </Form>

@@ -21,6 +21,7 @@ module.exports = {
   optimization: {
     minimizer: [new OptimizeCSSAssetsPlugin({})]
   },
+  devtool: "inline-source-map",
   module: {
     rules: [
       {
