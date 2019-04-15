@@ -45,6 +45,7 @@
     "@babel/runtime": "^7.4.3",
     "axios": "^0.18.0",
     "lodash": "^4.17.11",
+    "phoenix": "^1.4.3",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
