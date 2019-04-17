@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { VictoryPie } from "victory";
 
 const ExpenseChart = props => {
@@ -44,6 +45,15 @@ const ExpenseChart = props => {
       />
     </div>
   );
+};
+
+ExpenseChart.propTypes = {
+  expenses: PropTypes.arrayOf(
+    PropTypes.shape({
+      description: PropTypes.string.isRequired,
+      amount: PropTypes.number.isRequired
+    })
+  ).isRequired
 };
 
 export default ExpenseChart;
