@@ -7,7 +7,11 @@ const Routes = () => {
   const isLoggedIn = localStorage.token !== undefined;
 
   if (!isLoggedIn) {
-    return <Login />;
+    return (
+      <BrowserRouter>
+        <Login />
+      </BrowserRouter>
+    );
   }
 
   return (
