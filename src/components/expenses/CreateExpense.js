@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Button, Form, Header } from "semantic-ui-react";
 import LabelledInput from "../forms/LabelledInput";
+import "./create-expense.less";
 
 const CreateExpense = props => {
   const [description, setDescription] = useState("");
@@ -36,7 +37,7 @@ const CreateExpense = props => {
   }
 
   return (
-    <div>
+    <div className="create-expense">
       <Header>Add Expense</Header>
       <Form onSubmit={createExpense}>
         <LabelledInput
@@ -52,9 +53,11 @@ const CreateExpense = props => {
           onChange={e => setAmount(e.target.value)}
         />
         <br />
-        <Button primary type="submit" loading={isLoading}>
-          Add Expense
-        </Button>
+        <div>
+          <Button primary type="submit" loading={isLoading}>
+            Add Expense
+          </Button>
+        </div>
       </Form>
     </div>
   );
